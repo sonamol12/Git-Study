@@ -18,14 +18,16 @@ public class BaseClass {
 
     public WebDriver driver;
     public static Properties properties;
-    public void init()
-    {
-        driver=new EdgeDriver();
+
+    public void init() {
+        driver = new EdgeDriver();
     }
-    public BaseClass()
-    {
+
+    public BaseClass() {
+
+
         properties = new Properties();
-        File file = new  File(System.getProperty("user.dir")+"\\src\\main\\java\\config.properties");
+        File file = new File(System.getProperty("user.dir") + "\\src\\main\\java\\config.properties");
         try {
 
             FileInputStream inputStream = new FileInputStream(file);
@@ -42,32 +44,26 @@ public class BaseClass {
 
         }
     }
+
     @BeforeSuite
 
-    public void initialization() throws InterruptedException
-    {
-        String browser=properties.getProperty("browser");
-        if(browser.equalsIgnoreCase("Chrome"))
-        {
-            driver=new ChromeDriver();
+    public void initialization() throws InterruptedException {
+        String browser = properties.getProperty("browser");
+        if (browser.equalsIgnoreCase("chrome")) {
+            driver = new ChromeDriver();
 
         }
-        if(browser.equalsIgnoreCase("edge"))
-        {
-            driver=new EdgeDriver();
+        if (browser.equalsIgnoreCase("edge")) {
+            driver = new EdgeDriver();
 
         }
-        if(browser.equalsIgnoreCase("firefox"))
-        {
-            driver=new FirefoxDriver();
+        if (browser.equalsIgnoreCase("firefox")) {
+            driver = new FirefoxDriver();
 
         }
         driver.get(properties.getProperty("url"));
-        driver.manage().window().maximize();
+        //  driver.manage().window().maximize();
         Thread.sleep(2000);
-
-
-
     }
-
 }
+
